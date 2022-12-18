@@ -11,11 +11,45 @@
   <title>M4 Challenge</title>
   
 </head>
-<body class="vh-100 vw-100">
+
+<body class="vh-100 vw-100 d-flex flex-column">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><img src="./assets/logo.png"> </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Disabled</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
   <div class="d-flex justify-content-center align-items-center h-100 flex-column">
-  <div id="content-card" class="card table-dark bg-dark">
+  <div id="content-card" class="card table-dark bg-dark p-3">
     <h1 class="card-header">c4rli's Financial Analysis Report</h1>
-    <div class="card-body">
+    <div id="card-main" class="card-body">
       <h2 class="card-title">Profit and Loss Stats</h2>
       <p class="card-text">
         <table class="table table-dark table-hover table-striped-columns">
@@ -39,8 +73,64 @@
           </tbody>
         </table>
       </p>
-      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-primary me-md-2" type="button">Add Record</button>
+        <button class="btn btn-primary" type="button" onclick="showTopProfits()">View More</button>
+      </div>
     </div>
+    
+    <div id="card-topprofits" class="card-body">
+      <h2 class="card-title">Greatest Profits and Losses</h2>
+      <p class="card-text">
+        <table class="table table-dark table-hover table-striped-columns">
+          <tbody>
+            <tr>
+              <th>Time Period</th>
+              <th>Amount</th>
+            </tr>
+            <tr>
+              <td id="data-profits-date-1"></td>
+              <td id="data-profits-value-1"></td>
+            </tr>
+            <tr>
+              <td id="data-profits-date-2"></td>
+              <td id="data-profits-value-2"></td>
+            </tr>
+            <tr>
+              <td id="data-profits-date-3"></td>
+              <td id="data-profits-value-3"></td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <table class="table table-dark table-hover table-striped-columns">
+          <tbody>
+            <tr>
+              <th>Time Period</th>
+              <th>Amount</th>
+            </tr>
+            <tr>
+              <td id="data-loss-date-1"></td>
+              <td id="data-loss-value-1"></td>
+            </tr>
+            <tr>
+              <td id="data-loss-date-2"></td>
+              <td id="data-loss-value-2"></td>
+            </tr>
+            <tr>
+              <td id="data-loss-date-3"></td>
+              <td id="data-loss-value-3"></td>
+            </tr>
+          </tbody>
+        </table>
+      </p>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-primary me-md-2" type="button">Add Record</button>
+        <button class="btn btn-primary" type="button" onclick="showMain()">View More</button>
+      </div>
+    </div>
+
+    
   </div>
 </div>
 

@@ -7,28 +7,48 @@ h2 {
 }
 
 body {
-    background: rgb(58,10,129);
-background: radial-gradient(circle, rgba(58,10,129,1) 0%, rgba(29,4,70,1) 66%);
+    background: #3a0a81;
+background: radial-gradient(circle, #3a0a81 0%, #1d0446 66%);
 font-size: calc(0.5em + 1vw);
 min-width: none;
+}
+
+nav {
+    height: 100%;
+    max-height: 110px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    position: fixed;
+    background-color: #372096;
+   
+}
+
+nav img {
+    max-width: 100px;
+    max-height: 100px;
 }
 
 footer {
     height: 10%;
     max-height: 200px;
-    position:absolute;
+    left: 0;
     bottom: 0;
     width: 100%;
+    position: fixed;
 }
 
 footer img {
   
-    max-height: 100%;
-    max-width: auto;
-    position: absolute;
-    right: 0;
+    height: 100%;
+    max-width: 100%;
+    float: right;
 }
 
 #content-card {
     /* width: 50%; */
+}
+
+#card-topprofits{
+ display: none;
 }

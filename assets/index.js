@@ -88,33 +88,31 @@ var finances = [
 ];
 
 var totalMonths = finances.length;
-var totalProfit = 0;
-var totalChange = 0;
-var greatestProfits = [];
-var greatestLoss = [];
-var changeProfit =[];
+
 var locale = "en-gb";
 var currency = "GBP";
 
-for (var i = 0; i < totalMonths; i++) {
-    totalProfit += finances[i][1];
-}
+calculate();
 
-for (var i = 0; i < totalMonths - 1; i++) {
-    var pair = [];
 
-    changeString = (finances[i][0] + " " + finances[i + 1][0]);
-    changeValue = finances[i + 1][1] - finances[i][1];
+function calculate() {
+    var totalProfit = 0;
+    var totalChange = 0;
+    var greatestProfits = [["", 0]];
+    var greatestLoss = [["", 0]];
 
-    pair.push(changeString, changeValue);
-
-    totalChange += changeValue;
-    if (greatestProfits.length == 0) {
-        greatestProfits.push(pair);
-        greatestLoss.push(pair);
+    for (var i = 0; i < totalMonths; i++) {
+        totalProfit += finances[i][1];
     }
-    else {
-        
+
+    for (var i = 0; i < totalMonths - 1; i++) {
+        changeString = (finances[i][0] + " " + finances[i + 1][0]);
+        changeValue = finances[i + 1][1] - finances[i][1];
+
+        totalChange += changeValue;
+
+        var pair = [changeString, changeValue];
+
         if (changeValue > greatestProfits[0][1]) {
             greatestProfits.splice(0, 0, pair);
         }
@@ -123,22 +121,30 @@ for (var i = 0; i < totalMonths - 1; i++) {
             greatestLoss.splice(0, 0, pair);
         }
     }
+    var averageChange = +(totalChange / (totalMonths - 1)).toFixed(2);
+
+    document.getElementById("data-dates").innerHTML = (`${finances[0][0]} to ${finances[totalMonths - 1][0]}`);
+    document.getElementById("data-totMonths").innerHTML = (`${totalMonths}`);
+    document.getElementById("data-totProfit").innerHTML = (`${totalProfit.toLocaleString()} ${currency}`);
+    document.getElementById("data-avgChange").innerHTML = (`${averageChange.toLocaleString()} ${currency}`);
+
+    document.getElementById("data-profits-date-1").innerHTML = (`${greatestProfits[0][0]}`);
+    document.getElementById("data-profits-value-1").innerHTML = (`${greatestProfits[0][1].toLocaleString()} ${currency} `);
+    document.getElementById("data-profits-date-2").innerHTML = (`${greatestProfits[1][0]}`);
+    document.getElementById("data-profits-value-2").innerHTML = (`${greatestProfits[1][1].toLocaleString()} ${currency} `);
+    document.getElementById("data-profits-date-3").innerHTML = (`${greatestProfits[2][0]}`);
+    document.getElementById("data-profits-value-3").innerHTML = (`${greatestProfits[2][1].toLocaleString()} ${currency} `);
+
+    document.getElementById("data-loss-date-1").innerHTML = (`${greatestLoss[0][0]}`);
+    document.getElementById("data-loss-value-1").innerHTML = (`${greatestLoss[0][1].toLocaleString()} ${currency} `);
+    document.getElementById("data-loss-date-2").innerHTML = (`${greatestLoss[1][0]}`);
+    document.getElementById("data-loss-value-2").innerHTML = (`${greatestLoss[1][1].toLocaleString()} ${currency} `);
+    document.getElementById("data-loss-date-3").innerHTML = (`${greatestLoss[2][0]}`);
+    document.getElementById("data-loss-value-3").innerHTML = (`${greatestLoss[2][1].toLocaleString()} ${currency} `);
 
 
-}
-var averageChange = +(totalChange / (totalMonths - 1)).toFixed(2);
 
-console.log(greatestProfits.length)
-
-document.getElementById("data-dates").innerHTML = (`${finances[0][0]} to ${finances[totalMonths - 1][0]}`);
-document.getElementById("data-totMonths").innerHTML = (`${totalMonths}`);
-document.getElementById("data-totProfit").innerHTML = (`${totalProfit.toLocaleString()} ${currency}`);
-document.getElementById("data-avgChange").innerHTML = (`${averageChange.toLocaleString()} ${currency}`);
-
-
-
-
-console.log(`c4rli's Financial Analysis Report \n
+    console.log(`c4rli's Financial Analysis Report \n
     Dates: ${finances[0][0]} to ${finances[totalMonths - 1][0]}\n
     Total Months in Report: ${totalMonths}\n
     Total Profit: ${totalProfit.toLocaleString()} ${currency}\n
@@ -147,5 +153,14 @@ console.log(`c4rli's Financial Analysis Report \n
     Greatest Profits: ${greatestProfits[0][1].toLocaleString()} ${currency} (${greatestProfits[0][0]})\n
     Greatest Loss: ${greatestLoss[0][1].toLocaleString()} ${currency} (${greatestLoss[0][0]})\n\n
     `);
+}
 
-// console.log(new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'GBP' }).format(totalProfit));
+function showTopProfits() {
+    document.getElementById("card-main").setAttribute("style", "display:none");
+    document.getElementById("card-topprofits").setAttribute("style", "display:unset");
+}
+
+function showMain() {
+    document.getElementById("card-main").setAttribute("style", "display:unset");
+    document.getElementById("card-topprofits").setAttribute("style", "display:none");
+}
