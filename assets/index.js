@@ -130,6 +130,14 @@ var averageChange = +(totalChange / (totalMonths - 1)).toFixed(2);
 
 console.log(greatestProfits.length)
 
+document.getElementById("data-dates").innerHTML = (`${finances[0][0]} to ${finances[totalMonths - 1][0]}`);
+document.getElementById("data-totMonths").innerHTML = (`${totalMonths}`);
+document.getElementById("data-totProfit").innerHTML = (`${totalProfit.toLocaleString()} ${currency}`);
+document.getElementById("data-avgChange").innerHTML = (`${averageChange.toLocaleString()} ${currency}`);
+
+
+
+
 console.log(`c4rli's Financial Analysis Report \n
     Dates: ${finances[0][0]} to ${finances[totalMonths - 1][0]}\n
     Total Months in Report: ${totalMonths}\n
