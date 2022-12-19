@@ -87,24 +87,29 @@ var finances = [
     ['Feb-2017', 671099]
 ];
 
-var totalMonths = finances.length;
 
+// Set locale and currency string
 var locale = "en-gb";
 var currency = "GBP";
 
+// Run calculate() as main
 calculate();
 
-
 function calculate() {
+    
+    // Variables
+    var totalMonths = finances.length;
     var totalProfit = 0;
     var totalChange = 0;
     var greatestProfits = [["", 0]];
     var greatestLoss = [["", 0]];
 
+    // Loop through all elements to cumulatively add to total profit value
     for (var i = 0; i < totalMonths; i++) {
         totalProfit += finances[i][1];
     }
 
+    // Loop through all elements -1 to calculate the changes in profit over time
     for (var i = 0; i < totalMonths - 1; i++) {
         changeString = (finances[i][0] + " " + finances[i + 1][0]);
         changeValue = finances[i + 1][1] - finances[i][1];
@@ -113,6 +118,8 @@ function calculate() {
 
         var pair = [changeString, changeValue];
 
+        // push value of current array element if higher or lower than current 
+        // greatest profit/loss
         if (changeValue > greatestProfits[0][1]) {
             greatestProfits.splice(0, 0, pair);
         }
@@ -121,8 +128,10 @@ function calculate() {
             greatestLoss.splice(0, 0, pair);
         }
     }
+    // Convert decimal to 2 decimal places
     var averageChange = +(totalChange / (totalMonths - 1)).toFixed(2);
 
+    // Add values calculated above to HTML file
     document.getElementById("data-dates").innerHTML = (`${finances[0][0]} to ${finances[totalMonths - 1][0]}`);
     document.getElementById("data-totMonths").innerHTML = (`${totalMonths}`);
     document.getElementById("data-totProfit").innerHTML = (`${totalProfit.toLocaleString()} ${currency}`);
@@ -143,7 +152,7 @@ function calculate() {
     document.getElementById("data-loss-value-3").innerHTML = (`${greatestLoss[2][1].toLocaleString()} ${currency} `);
 
 
-
+    // Print values calculated above to console
     console.log(`c4rli's Financial Analysis Report \n
     Dates: ${finances[0][0]} to ${finances[totalMonths - 1][0]}\n
     Total Months in Report: ${totalMonths}\n
@@ -155,11 +164,13 @@ function calculate() {
     `);
 }
 
+// Function to toggle top profits view when clicked
 function showTopProfits() {
     document.getElementById("card-main").setAttribute("style", "display:none");
     document.getElementById("card-topprofits").setAttribute("style", "display:unset");
 }
 
+// Function to toggle main view when clicked
 function showMain() {
     document.getElementById("card-main").setAttribute("style", "display:unset");
     document.getElementById("card-topprofits").setAttribute("style", "display:none");

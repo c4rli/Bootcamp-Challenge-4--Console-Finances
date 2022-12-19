@@ -1,3 +1,12 @@
+/* Body */
+body {
+    background: #3a0a81;
+    background: radial-gradient(circle, #3a0a81 0%, #1d0446 66%);
+    font-size: calc(0.5em + 1vw);
+    min-width: none;
+}
+
+/* Fonts + Headings */
 h1 {
     font-size: calc(1.5em + 1vw);
 }
@@ -6,13 +15,7 @@ h2 {
     font-size: calc(1em + 1vw);
 }
 
-body {
-    background: #3a0a81;
-background: radial-gradient(circle, #3a0a81 0%, #1d0446 66%);
-font-size: calc(0.5em + 1vw);
-min-width: none;
-}
-
+/* Navbar */
 nav {
     height: 100%;
     max-height: 110px;
@@ -20,8 +23,12 @@ nav {
     top: 0;
     width: 100%;
     position: fixed;
-    background-color: #372096;
-   
+}
+
+nav,
+#navbarcontainer {
+    background-color: #4528b9;
+    z-index: 2;
 }
 
 nav img {
@@ -29,26 +36,17 @@ nav img {
     max-height: 100px;
 }
 
-footer {
+/* Footer logo */
+#bodylogo {
     height: 10%;
     max-height: 200px;
-    left: 0;
+    right: 0;
     bottom: 0;
-    width: 100%;
     position: fixed;
+    z-index: -1;
 }
 
-footer img {
-  
-    height: 100%;
-    max-width: 100%;
-    float: right;
-}
-
-#content-card {
-    /* width: 50%; */
-}
-
-#card-topprofits{
- display: none;
+/* Hide second view */
+#card-topprofits {
+    display: none;
 }
