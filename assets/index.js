@@ -114,12 +114,13 @@ function calculate() {
         changeString = (finances[i][0] + " " + finances[i + 1][0]);
         changeValue = finances[i + 1][1] - finances[i][1];
 
+        // Cumulative total of profit changes
         totalChange += changeValue;
 
         var pair = [changeString, changeValue];
 
-        // push value of current array element if higher or lower than current 
-        // greatest profit/loss
+        // push value of current array element if higher or lower than current greatest profit/loss
+        // NOTE: not actually a proper sorting method but is less complicated than implementing one
         if (changeValue > greatestProfits[0][1]) {
             greatestProfits.splice(0, 0, pair);
         }
@@ -130,6 +131,17 @@ function calculate() {
     }
     // Convert decimal to 2 decimal places
     var averageChange = +(totalChange / (totalMonths - 1)).toFixed(2);
+    
+    // Print values calculated above to console
+    console.log(`c4rli's Financial Analysis Report \n
+    Dates: ${finances[0][0]} to ${finances[totalMonths - 1][0]}\n
+    Total Months in Report: ${totalMonths}\n
+    Total Profit: ${totalProfit.toLocaleString()} ${currency}\n
+    Average Change: ${averageChange.toLocaleString()} ${currency}\n
+~~~~~ Greatest Profit/Loss ~~~~~\n
+    Greatest Profits: ${greatestProfits[0][1].toLocaleString()} ${currency} (${greatestProfits[0][0]})\n
+    Greatest Loss: ${greatestLoss[0][1].toLocaleString()} ${currency} (${greatestLoss[0][0]})\n\n
+    `);
 
     // Add values calculated above to HTML file
     document.getElementById("data-dates").innerHTML = (`${finances[0][0]} to ${finances[totalMonths - 1][0]}`);
@@ -150,18 +162,6 @@ function calculate() {
     document.getElementById("data-loss-value-2").innerHTML = (`${greatestLoss[1][1].toLocaleString()} ${currency} `);
     document.getElementById("data-loss-date-3").innerHTML = (`${greatestLoss[2][0]}`);
     document.getElementById("data-loss-value-3").innerHTML = (`${greatestLoss[2][1].toLocaleString()} ${currency} `);
-
-
-    // Print values calculated above to console
-    console.log(`c4rli's Financial Analysis Report \n
-    Dates: ${finances[0][0]} to ${finances[totalMonths - 1][0]}\n
-    Total Months in Report: ${totalMonths}\n
-    Total Profit: ${totalProfit.toLocaleString()} ${currency}\n
-    Average Change: ${averageChange.toLocaleString()} ${currency}\n
-~~~~~ Greatest Profit/Loss ~~~~~\n
-    Greatest Profits: ${greatestProfits[0][1].toLocaleString()} ${currency} (${greatestProfits[0][0]})\n
-    Greatest Loss: ${greatestLoss[0][1].toLocaleString()} ${currency} (${greatestLoss[0][0]})\n\n
-    `);
 }
 
 // Function to toggle top profits view when clicked
